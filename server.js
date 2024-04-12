@@ -8,7 +8,7 @@ const vaildCheck = require('./middleware/validCheck');
 const userRoute = require('./route/userRoute');
 
 app.use(express.json());
-env.config();
+   env.config();
 app.use(cors());
 
 app.use('/api/auth',authroute)
@@ -19,7 +19,7 @@ const server = async()=>{
     try{
        await connectDB()
         app.listen(port,()=>{
-            console.log(`${port} is connected`)
+            console.log(`${port} is connected.`)
         })
     }catch(err){
             console.log(err,'server is not running')
