@@ -19,7 +19,7 @@ const server = async()=>{
     try{
        await connectDB()
         app.listen(port,()=>{
-            console.log(`${port} is connected`)
+            console.log(`${port} is connected...`)
         })
     }catch(err){
             console.log(err,'server is not running')
