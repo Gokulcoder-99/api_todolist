@@ -1,9 +1,9 @@
-const User = require("../../model/user.model");
+const { getUserByEmail,getTodosByUserId} = require("../../Db/db");
 
 async function read(req, res) {
   const email = req.userVerified.data;
   try {
-    const userExist = await User.findOne({ email });
+    const userExist = await getUserByEmail(email);
 
     if (!userExist) {
       return res.status(404).json({
@@ -13,7 +13,7 @@ async function read(req, res) {
     }
 
     // Accessing the todos array from userExist object
-    const todoArr = userExist.todos;
+    const todoArr = await getTodosByUserId(userExist.id);
 
     res.status(200).json({
       status: "success",

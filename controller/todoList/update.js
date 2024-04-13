@@ -1,10 +1,10 @@
-const User = require("../../model/user.model");
+const { getUserByEmail, updateTodo } = require("../../Db/db");
 
 async function update(req, res) {
   const email = req.userVerified.data;
   const {id,task,completed} = req.body;
   try {
-    const userExist = await User.findOne({ email });
+    const userExist = await getUserByEmail(email);
     if (!userExist) {
       return res.status(404).json({
         status: "fail",
@@ -13,19 +13,12 @@ async function update(req, res) {
     }
 
     //updating the todos array from userExist object
-    let todoArr = userExist.todos;
-    todoArr.find((item) =>{
-      if(item._id.toString()==id){
-        item.task = task || item.task
-        item.completed = completed !== undefined? completed : item.completed;
-      }
-    })
-   await userExist.save()
+   const updatedTodo = await updateTodo(id,task,completed)
 
     res.status(200).json({
       status: "success",
       message: "Task updated successfully",
-      todoArr,
+      updatedTodo,
     });
   } catch (err) {
     res.status(500).json({

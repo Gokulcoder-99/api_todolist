@@ -1,10 +1,10 @@
-const User = require("../../model/user.model");
+const { getUserByEmail, createTodo } = require("../../Db/db");
 
 async function create(req, res) {
   const email = req.userVerified.data;
   const taskObj = req.body;
   try {
-    const userExist = await User.findOne({ email });
+    const userExist = await getUserByEmail(email);
 
     if (!userExist) {
       return res.status(404).json({
@@ -13,17 +13,12 @@ async function create(req, res) {
       });
     }
 
-    // Accessing the todos array from userExist object
-    const todoArr = userExist.todos;
-    todoArr.push(taskObj);
-
-    // Saving the changes to the user document
-    await userExist.save();
+    const newTodo = await createTodo(userExist.id, taskObj.task);
 
     res.status(200).json({
       status: "success",
       message: "Task added successfully",
-      obj:todoArr[todoArr.length-1],
+      obj: newTodo,
     });
   } catch (err) {
     res.status(500).json({
