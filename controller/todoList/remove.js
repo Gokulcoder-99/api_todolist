@@ -1,8 +1,8 @@
-const { getUserByEmail, deleteTodo} = require("../../Db/db");
+const { getUserByEmail, deleteTodo } = require("../../Db/db");
 
 async function remove(req, res) {
   const email = req.userVerified.data;
-  const {id} = req.body;
+  const { id } = req.body;
   try {
     const userExist = await getUserByEmail(email);
 
@@ -14,7 +14,7 @@ async function remove(req, res) {
     }
 
     //deleting the todos array from userExist object
-    await deleteTodo(id)
+    await deleteTodo(id);
     const todoArr = await getTodosByUserId(userExist.id);
 
     res.status(200).json({
@@ -29,4 +29,4 @@ async function remove(req, res) {
     });
   }
 }
-  module.exports = remove
+module.exports = remove;

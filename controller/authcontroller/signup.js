@@ -1,12 +1,12 @@
-const {createUser,getUserByEmail} = require("../../Db/db")
+const { createUser, getUserByEmail } = require("../../Db/db");
 const { createToken } = require("../../utility/jwt");
-const {encryptPw} = require("../../utility/crypt");
+const { encryptPw } = require("../../utility/crypt");
 
 const signup = async (req, res) => {
-  const { name, email, password} = req.body;
+  const { name, email, password } = req.body;
   try {
-    const userExist = await  getUserByEmail(email);
-    console.log(userExist)
+    const userExist = await getUserByEmail(email);
+    console.log(userExist);
 
     if (userExist) {
       return res.status(400).json({

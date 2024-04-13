@@ -1,11 +1,11 @@
-const {getUserByEmail} = require("../../Db/db")
+const { getUserByEmail } = require("../../Db/db");
 const { createToken } = require("../../utility/jwt");
 const { decryptPw } = require("../../utility/crypt");
 const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const userExist = await  getUserByEmail(email);
+    const userExist = await getUserByEmail(email);
 
     if (userExist == undefined) {
       return res.status(400).json({
