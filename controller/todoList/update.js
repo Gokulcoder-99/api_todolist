@@ -19,6 +19,7 @@ async function update (req, res) {
         item.completed = completed !== undefined ? completed : item.completed
         return item
       }
+      return null
     })
 
     // updating the todos array from userExist object
