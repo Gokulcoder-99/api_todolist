@@ -15,7 +15,8 @@ async function remove (req, res) {
 
     // deleting the todos array from userExist object
     await deleteTodo(id)
-    const todoArr = await getTodosByUserId(userExist.id)
+    const unSortedtodoArr = await getTodosByUserId(userExist.id)
+    const todoArr = unSortedtodoArr.sort((a, b) => a.id - b.id)
 
     res.status(200).json({
       status: 'success',

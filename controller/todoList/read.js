@@ -13,7 +13,8 @@ async function read (req, res) {
     }
 
     // Accessing the todos array from userExist object
-    const todoArr = await getTodosByUserId(userExist.id)
+    const unSortedtodoArr = await getTodosByUserId(userExist.id)
+    const todoArr = unSortedtodoArr.sort((a, b) => a.id - b.id)
 
     res.status(200).json({
       status: 'success',
