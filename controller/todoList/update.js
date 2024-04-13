@@ -17,6 +17,7 @@ async function update (req, res) {
       if (item.id === id) {
         item.task = task || item.task
         item.completed = completed !== undefined ? completed : item.completed
+        return item
       }
     })
 
