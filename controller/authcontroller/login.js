@@ -1,4 +1,4 @@
-const {getUserByEmail} = require("../../Db/db");
+const {getUserByEmail} = require("../../Db/db")
 const { createToken } = require("../../utility/jwt");
 const { decryptPw } = require("../../utility/crypt");
 const login = async (req, res) => {
@@ -7,7 +7,7 @@ const login = async (req, res) => {
   try {
     const userExist = await  getUserByEmail(email);
 
-    if (!userExist) {
+    if (userExist == undefined) {
       return res.status(400).json({
         message: "User does not  exist",
       });

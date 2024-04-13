@@ -1,4 +1,4 @@
-const { getUserByEmail,getTodosByUserId} = require("../../Db/db");
+const { getUserByEmail, getTodosByUserId } = require("../../Db/db");
 
 async function read(req, res) {
   const email = req.userVerified.data;
@@ -27,4 +27,4 @@ async function read(req, res) {
     });
   }
 }
-  module.exports = read
+module.exports = read;

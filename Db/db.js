@@ -38,6 +38,7 @@ async function createTables() {
 // Execute the function to create the tables
 createTables();
 
+
 // Create User function
 
 async function createUser(name, email, password) {
@@ -71,7 +72,7 @@ async function getUserByEmail(email) {
   }
 }
 
-// Create Todo
+// Create Todo 
 
 async function createTodo(userId, task) {
   const query = {
