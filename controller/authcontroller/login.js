@@ -1,38 +1,38 @@
-const { getUserByEmail } = require("../../Db/db");
-const { createToken } = require("../../utility/jwt");
-const { decryptPw } = require("../../utility/crypt");
+const { getUserByEmail } = require('../../Db/db')
+const { createToken } = require('../../utility/jwt')
+const { decryptPw } = require('../../utility/crypt')
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body
 
   try {
-    const userExist = await getUserByEmail(email);
+    const userExist = await getUserByEmail(email)
 
     if (userExist == undefined) {
       return res.status(400).json({
-        message: "User does not  exist",
-      });
+        message: 'User does not  exist'
+      })
     }
-    const PwFromDb = userExist.password;
-    const checkPw = await decryptPw(password, PwFromDb);
+    const PwFromDb = userExist.password
+    const checkPw = await decryptPw(password, PwFromDb)
     if (!checkPw) {
       return res.status(400).json({
-        status: "fail",
-        message: "Password is incorrect",
-      });
+        status: 'fail',
+        message: 'Password is incorrect'
+      })
     }
 
-    const token = createToken(email);
+    const token = createToken(email)
 
     res.status(200).json({
-      message: "User successfully logged in",
-      token,
-    });
+      message: 'User successfully logged in',
+      token
+    })
   } catch (err) {
     res.status(500).json({
-      status: "fail",
-      message: err.message,
-    });
+      status: 'fail',
+      message: err.message
+    })
   }
-};
+}
 
-module.exports = login;
+module.exports = login
