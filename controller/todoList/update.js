@@ -11,15 +11,15 @@ async function update (req, res) {
         message: 'User not found'
       })
     }
-
+    const upObj = {}
     const todoArr1 = await getTodosByUserId(userExist.id)
-    const upObj = todoArr1.find((item) => {
+    todoArr1.find((item) => {
       if (item.id === id) {
-        item.task = task || item.task
-        item.completed = completed !== undefined ? completed : item.completed
-        return item
+        upObj.task = task || item.task
+        upObj.completed = completed !== undefined ? completed : item.completed
+        return true
       }
-      return null
+      return false
     })
 
     // updating the todos array from userExist object
