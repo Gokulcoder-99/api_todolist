@@ -1,4 +1,4 @@
-const { getUserByEmail, deleteTodo } = require('../../Db/db')
+const { getUserByEmail, deleteTodo, getTodosByUserId } = require('../../Db/db')
 
 async function remove (req, res) {
   const email = req.userVerified.data

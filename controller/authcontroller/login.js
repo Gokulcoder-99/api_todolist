@@ -7,7 +7,7 @@ const login = async (req, res) => {
   try {
     const userExist = await getUserByEmail(email)
 
-    if (userExist == undefined) {
+    if (userExist === undefined) {
       return res.status(400).json({
         message: 'User does not  exist'
       })

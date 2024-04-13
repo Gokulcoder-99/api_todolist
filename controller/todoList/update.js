@@ -11,12 +11,12 @@ async function update (req, res) {
         message: 'User not found'
       })
     }
-    const upObj = {}
+
     const todoArr1 = await getTodosByUserId(userExist.id)
-    todoArr1.find((item) => {
-      if (item.id == id) {
-        upObj.task = task || item.task
-        upObj.completed = completed !== undefined ? completed : item.completed
+    const upObj = todoArr1.find((item) => {
+      if (item.id === id) {
+        item.task = task || item.task
+        item.completed = completed !== undefined ? completed : item.completed
       }
     })
 
