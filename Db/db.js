@@ -2,10 +2,11 @@ const { Pool } = require('pg')
 
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost',
-  database: 'todoList',
-  password: 'gokul',
-  port: 5432
+  host: 'database-1.c5c0m8wgqs7s.us-east-1.rds.amazonaws.com',
+  database: 'todo',
+  password: 'GokulPassword',
+  port: 5432,
+  ssl: true
 })
 
 const createTablesQuery = `
